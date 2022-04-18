@@ -10,10 +10,12 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => "10.0" }
+  s.platforms    = { :ios => "12.0" }
   s.source       = { :git => "https://github.com/jukqaz/react-native-kakao-navi.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
+  s.dependency "KakaoSDKCommon"
+  s.dependency "KakaoSDKNavi"
 end

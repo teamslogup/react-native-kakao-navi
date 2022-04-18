@@ -21,7 +21,7 @@ class KakaoNaviModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun init(kakaoSdkKey: String, promise: Promise) {
+  fun initSdk(kakaoSdkKey: String, promise: Promise) {
     try {
       KakaoSdk.init(reactApplicationContext, kakaoSdkKey)
       isInitialized = true

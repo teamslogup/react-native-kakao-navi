@@ -2,8 +2,7 @@
 
 @interface RCT_EXTERN_MODULE(KakaoNavi, NSObject)
 
-RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(initSdk:(NSString *)kakaoSdkKey)
+RCT_EXTERN_METHOD(navigate:(NSDictionary *)location (nullable NSDictionary *)options)
 
 @end

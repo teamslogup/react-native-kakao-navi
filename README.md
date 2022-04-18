@@ -5,18 +5,9 @@ Kakao navi
 ## Installation
 
 ```sh
-npm install react-native-kakao-navi
+yarn add react-native-kakao-navi
 ```
 
-## Usage
-
-```js
-import { multiply } from "react-native-kakao-navi";
-
-// ...
-
-const result = await multiply(3, 7);
-```
 
 ## Contributing
 

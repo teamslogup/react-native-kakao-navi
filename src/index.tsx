@@ -29,7 +29,7 @@ const KakaoNavi = NativeModules.KakaoNavi
     );
 
 const initSdk = (kakaoSdkKey: string) => {
-  KakaoNavi.init(kakaoSdkKey);
+  KakaoNavi.initSdk(kakaoSdkKey);
 };
 
 const navigate = (location: Location, options?: NaviOption) => {
