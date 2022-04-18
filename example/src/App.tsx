@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button } from 'react-native';
+import { Button, SafeAreaView, StyleSheet } from 'react-native';
 import { initSdk, navigate } from 'react-native-kakao-navi';
 
 export default function App() {
@@ -15,5 +15,17 @@ export default function App() {
     });
   };
 
-  return <Button onPress={kakaoNavigate} title="Kakao Navi" />;
+  return (
+    <SafeAreaView style={styles.container}>
+      <Button onPress={kakaoNavigate} title="Kakao Navi" />
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

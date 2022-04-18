@@ -12,7 +12,7 @@ class KakaoNavi: NSObject {
         isKakaoSdkInitialized = true
     }
     
-    @objc(navigate::)
+    @objc(navigate:options:)
     func navigate(location: Dictionary<String, String>, options: Dictionary<String, String>?) -> Void {
         if(!isKakaoSdkInitialized) {
             return
@@ -31,15 +31,17 @@ class KakaoNavi: NSObject {
             return
         }
 
-        if UIApplication.shared.canOpenURL(navigateUrl) {
-            let naviOption: [UIApplication.OpenExternalURLOptionsKey : Any] = [
-                UIApplication.OpenExternalURLOptionsKey.init(rawValue: "coordType"): CoordType.WGS84,
-                UIApplication.OpenExternalURLOptionsKey.init(rawValue: "startX"): options?["startX"] as Any,
-                UIApplication.OpenExternalURLOptionsKey.init(rawValue: "startY"): options?["startY"] as Any
-            ]
-            UIApplication.shared.open(navigateUrl, options: naviOption, completionHandler: nil)
-        } else {
-            UIApplication.shared.open(NaviApi.webNaviInstallUrl, options: [:], completionHandler: nil)
+        DispatchQueue.main.async {
+            if UIApplication.shared.canOpenURL(navigateUrl) {
+                let naviOption: [UIApplication.OpenExternalURLOptionsKey : Any] = [
+                    UIApplication.OpenExternalURLOptionsKey.init(rawValue: "coordType"): CoordType.WGS84,
+                    UIApplication.OpenExternalURLOptionsKey.init(rawValue: "startX"): options?["startX"] as Any,
+                    UIApplication.OpenExternalURLOptionsKey.init(rawValue: "startY"): options?["startY"] as Any
+                ]
+                UIApplication.shared.open(navigateUrl, options: naviOption, completionHandler: nil)
+            } else {
+                UIApplication.shared.open(NaviApi.webNaviInstallUrl, options: [:], completionHandler: nil)
+            }
         }
     }
     
