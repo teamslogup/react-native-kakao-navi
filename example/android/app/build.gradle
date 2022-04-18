@@ -122,11 +122,6 @@ def enableHermes = project.ext.react.get("enableHermes", false);
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     defaultConfig {
         applicationId "com.example.reactnativekakaonavi"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -184,15 +179,15 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
 
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    debugImplementation("com.facebook.flipper:flipper:0.142.0") {
       exclude group:'com.facebook.fbjni'
     }
-    debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
+    debugImplementation("com.facebook.flipper:flipper-network-plugin:0.142.0") {
         exclude group:'com.facebook.flipper'
         exclude group:'com.squareup.okhttp3', module:'okhttp'
     }
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
+    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:0.142.0") {
         exclude group:'com.facebook.flipper'
     }
 
