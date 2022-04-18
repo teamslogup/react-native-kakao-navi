@@ -1,5 +1,16 @@
 import { NativeModules, Platform } from 'react-native';
 
+interface Location {
+  name: string;
+  x: string;
+  y: string;
+}
+
+interface NaviOption {
+  startX: string;
+  startY: string;
+}
+
 const LINKING_ERROR =
   `The package 'react-native-kakao-navi' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
@@ -17,6 +28,12 @@ const KakaoNavi = NativeModules.KakaoNavi
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return KakaoNavi.multiply(a, b);
-}
+const initSdk = (kakaoSdkKey: string) => {
+  KakaoNavi.init(kakaoSdkKey);
+};
+
+const navigate = (location: Location, options?: NaviOption) => {
+  KakaoNavi.navigate(location, options);
+};
+
+export { initSdk, navigate };

@@ -1,31 +1,19 @@
-import * as React from 'react';
-
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-kakao-navi';
+import React, { useEffect } from 'react';
+import { Button } from 'react-native';
+import { initSdk, navigate } from 'react-native-kakao-navi';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+  useEffect(() => {
+    initSdk('31fee9db84bdc3cc972398458af74851');
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
-  );
-}
+  const kakaoNavigate = () => {
+    navigate({
+      name: '판교역',
+      x: '126.977983',
+      y: '37.594943',
+    });
+  };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
+  return <Button onPress={kakaoNavigate} title="Kakao Navi" />;
+}
