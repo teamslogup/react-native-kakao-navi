@@ -27,18 +27,18 @@ class KakaoNavi: NSObject {
         }
         
         let destination = NaviLocation(name: name, x: x, y: y)
-        guard let navigateUrl = NaviApi.shared.navigateUrl(destination: destination) else {
+        let naviOption = NaviOption(
+            coordType: CoordType.WGS84,
+            startX: options?["startX"],
+            startY: options?["startY"]
+        )
+        guard let navigateUrl = NaviApi.shared.navigateUrl(destination: destination, option: naviOption) else {
             return
         }
 
         DispatchQueue.main.async {
             if UIApplication.shared.canOpenURL(navigateUrl) {
-                let naviOption: [UIApplication.OpenExternalURLOptionsKey : Any] = [
-                    UIApplication.OpenExternalURLOptionsKey.init(rawValue: "coordType"): CoordType.WGS84,
-                    UIApplication.OpenExternalURLOptionsKey.init(rawValue: "startX"): options?["startX"] as Any,
-                    UIApplication.OpenExternalURLOptionsKey.init(rawValue: "startY"): options?["startY"] as Any
-                ]
-                UIApplication.shared.open(navigateUrl, options: naviOption, completionHandler: nil)
+                UIApplication.shared.open(navigateUrl, options: [:], completionHandler: nil)
             } else {
                 UIApplication.shared.open(NaviApi.webNaviInstallUrl, options: [:], completionHandler: nil)
             }
