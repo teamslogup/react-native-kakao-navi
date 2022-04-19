@@ -2,12 +2,7 @@
 
 Kakao navi
 
-## Installation
-
-```sh
-yarn add react-native-kakao-navi
-```
-
+## Installation (TBD)
 
 ## Contributing
 
