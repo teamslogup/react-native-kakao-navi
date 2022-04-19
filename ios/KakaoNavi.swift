@@ -27,12 +27,16 @@ class KakaoNavi: NSObject {
         }
         
         let destination = NaviLocation(name: name, x: x, y: y)
-        let naviOption = NaviOption(
-            coordType: CoordType.WGS84
+        let coordType = CoordType.WGS84
+        var naviOption = NaviOption(
+            coordType: coordType
         )
-        if let startX = options?["startX"], startY = options?["startY"] {
-            naviOption.startX = startX
-            naviOption.startY= startY
+        if let startX = options?["startX"], let startY = options?["startY"] {
+            naviOption = NaviOption(
+                coordType: coordType,
+                startX: startX,
+                startY: startY
+            )
         }
         
         guard let navigateUrl = NaviApi.shared.navigateUrl(destination: destination, option: naviOption) else {
